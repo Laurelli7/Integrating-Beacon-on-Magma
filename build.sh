@@ -37,6 +37,7 @@ pushd $BEACON
 
 # Building Ins
 (
+    export LLVM_COMPILER=clang
     pushd Ins
     if [ -d build ]; then
         rm -r build

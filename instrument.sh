@@ -71,14 +71,14 @@ source "$TARGET/configrc"
 		mv ../$p .
 		extract-bc "./$p"
 		echo "[+] precondInfer"
-		$BEACON/precondInfer/build/bin/precondInfer $p.bc --target-file=../cstest.txt --join-bound=5
+		$FUZZER/bin/precondInfer $p.bc --target-file=../cstest.txt --join-bound=5
 		echo "[+] Ins"
-        $BEACON/Ins/build/Ins -output="$folder/fuzz.bc" -blocks=bbreaches.txt -afl -byte -log=log.txt -load=range_res.txt ./transed.bc
+        $FUZZER/bin/Ins -output="$folder/fuzz.bc" -blocks=bbreaches.txt -afl -byte -log=log.txt -load=range_res.txt ./transed.bc
 		echo "[+] Compile"
 		export CC=clang; export CXX=clang++;
 		input_bc=$folder/fuzz.bc
 		output_bin=$OUT/$p
-		afl_llvm_rt=$BEACON/Fuzzer/afl-llvm-rt.o
+		afl_llvm_rt=$FUZZER/bin/afl-llvm-rt.o
 		export BUILD_BC_LIBS="$LIBS -lrt" 
 		pushd "$TARGET/repo"
 		if [[ $TARGET = *libpng* ]]; then

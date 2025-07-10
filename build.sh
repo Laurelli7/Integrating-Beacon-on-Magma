@@ -56,6 +56,7 @@ pushd $BEACON
 echo 'export LLVM_COMPILER=clang' >> "$HOME/.bashrc"
 echo 'export PATH="/usr/local/bin:$PATH"' >> "$HOME/.bashrc"
 source "$HOME/.bashrc"
+export LLVM_COMPILER=clang
 wllvm++ $CXXFLAGS -std=c++11 -c "$FUZZER/src/driver.cpp" -fPIC -o "$OUT/driver.o"
 
 popd
